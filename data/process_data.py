@@ -1,26 +1,13 @@
-# import libraries
-import re
+"""
+Description: Data Processing and Loading to sql DataBase
+Author: Nedal Altiti
+Date: 29 / 11 / 2023
+"""
 import sys
-import pickle
-import pandas as pd 
-
+import pandas as pd
+import numpy as np
+import sqlite3
 from sqlalchemy import create_engine
-import nltk 
-from nltk.tokenize import word_tokenize 
-from nltk.corpus import stopwords 
-from nltk.stem import WordNetLemmatizer
-
-from sklearn.pipeline import Pipeline 
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.multioutput import MultiOutputClassifier
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.model_selection import train_test_split,  GridSearchCV 
-from sklearn.metrics import classification_report
-
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
 
 def load_data(messages_filepath, categories_filepath):
     """
