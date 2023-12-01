@@ -96,6 +96,17 @@ def build_model():
     
 
 def evaluate_model(model, X_test, y_test, category_names):
+    """
+    Function: Evaluate the model and print the f1 score, precision and recall for each output category of the dataset.
+    Args:
+        model (object): The trained machine learning model.
+        X_test (pandas.Series): Input messages for testing.
+        y_test (pandas.DataFrame): True labels for testing.
+        category_names (Index): Names of the target categories.
+
+    Returns:
+        None
+    """
     y_pred = model.predict(X_test)
     
     for i, col in enumerate(category_names):
