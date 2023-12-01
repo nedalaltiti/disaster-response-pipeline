@@ -49,6 +49,9 @@ def clean_data(df):
         categories[column] = categories[column].astype(str).str[-1]
         categories[column] = categories[column].astype(int)
 
+    # replace the "wrong" values from '2' to '1'
+    categories.replace(2, 1, inplace=True)        
+
     # drop the original categories column from `df`
     df = df.drop(['categories'], axis=1)
 
@@ -73,7 +76,7 @@ def save_data(df, database_filename):
         None
     """
     engine = create_engine('sqlite:///{}'.format(database_filename))
-    df.to_sql('disaster_messages_table', engine, index=False)
+    df.to_sql('disaster_messages_table', engine, index=False, if_exists='replace')
  
 
 
@@ -102,6 +105,7 @@ def main():
               'disaster_messages.csv disaster_categories.csv '\
               'DisasterResponse.db')
 
-
 if __name__ == '__main__':
     main()
+
+
